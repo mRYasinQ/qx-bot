@@ -1,10 +1,10 @@
 {
   "name": "qx-bot",
   "version": "0.0.1",
-  "description": "",
+  "description": "An Advanced Telegram Controller for 3x-ui Panel and Service Management.",
   "author": "Yasin Abbasi",
   "private": true,
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "build": "nest build",
     "start": "nest start",
@@ -37,6 +37,8 @@
     "eslint-plugin-prettier": "^5.2.2",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "globals": "^16.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "prettier": "^3.4.2",
     "source-map-support": "^0.5.21",
     "ts-loader": "^9.5.2",
