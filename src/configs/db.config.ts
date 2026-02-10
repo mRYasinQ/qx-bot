@@ -14,7 +14,7 @@ const DbConfig: MikroOrmModuleAsyncOptions = {
     dbName: config.get<EnvConfig['DB_NAME']>('db.name'),
     entities: ['./dist/**/**/*.entity.js'],
     entitiesTs: ['./src/**/**/*.entity.ts'],
-    allowGlobalContext: config.get<EnvConfig['NODE_ENV']>('node_env') === 'development',
+    allowGlobalContext: true,
   }),
 };
 

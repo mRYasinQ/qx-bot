@@ -3,9 +3,9 @@ import z from 'zod';
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production']).default('production'),
   APP_PORT: z.coerce.number().default(3000),
-  MAX_LIMIT_PAGINATION: z.coerce.number().default(5),
 
   BOT_TOKEN: z.string().min(1),
+  BOT_PROXY: z.string().nullable().default(null),
 
   DB_NAME: z.string().default('bot.db'),
 });

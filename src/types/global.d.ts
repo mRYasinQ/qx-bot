@@ -1,11 +1,11 @@
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      NODE_ENV: 'development' | 'production';
+      NODE_ENV: string;
       APP_PORT: string;
-      MAX_LIMIT_PAGINATION: string;
 
       BOT_TOKEN: string;
+      BOT_PROXY: string;
 
       DB_NAME: string;
     }
