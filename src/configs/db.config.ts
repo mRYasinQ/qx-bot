@@ -11,7 +11,7 @@ const DbConfig: MikroOrmModuleAsyncOptions = {
   useFactory: (config: ConfigService) => ({
     driver: BetterSqliteDriver,
     debug: config.get<EnvConfig['NODE_ENV']>('node_env') === 'development',
-    dbName: config.get<EnvConfig['DB_NAME']>('db.name'),
+    dbName: './data/bot.db',
     entities: ['./dist/**/**/*.entity.js'],
     entitiesTs: ['./src/**/**/*.entity.ts'],
     allowGlobalContext: true,

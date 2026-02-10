@@ -12,9 +12,6 @@ const AppConfig = () => {
       token: env.BOT_TOKEN,
       proxy: env.BOT_PROXY,
     },
-    db: {
-      name: env.DB_NAME,
-    },
   };
 };
 

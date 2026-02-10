@@ -14,7 +14,7 @@ class MessagesHelper implements OnModuleInit {
   }
 
   private loadMessages() {
-    const messagesPaths = path.join(process.cwd(), 'messages');
+    const messagesPaths = path.join(process.cwd(), 'data', 'messages');
     const isExistPath = fs.existsSync(messagesPaths);
 
     if (!isExistPath) return;

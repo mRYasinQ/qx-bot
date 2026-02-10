@@ -6,8 +6,6 @@ const envSchema = z.object({
 
   BOT_TOKEN: z.string().min(1),
   BOT_PROXY: z.string().nullable().default(null),
-
-  DB_NAME: z.string().default('bot.db'),
 });
 
 type EnvConfig = z.infer<typeof envSchema>;

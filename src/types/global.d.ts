@@ -6,8 +6,6 @@ declare global {
 
       BOT_TOKEN: string;
       BOT_PROXY: string;
-
-      DB_NAME: string;
     }
   }
 }
