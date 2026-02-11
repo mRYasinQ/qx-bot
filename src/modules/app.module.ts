@@ -1,5 +1,6 @@
 import { Module, type OnModuleInit } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 
 import { MikroORM } from '@mikro-orm/core';
@@ -12,6 +13,8 @@ import EmitterConfig from '@/configs/emitter.config';
 import TgConfig from '@/configs/tg.config';
 
 import CommonModule from '@/common/common.module';
+import TelegrafExceptionFilter from '@/common/filters/telegraf-exception.filter';
+import AuthGuard from '@/common/guards/auth.guard';
 import type { EnvConfig } from '@/common/schemas/env.schema';
 
 import BotModule from './bot/bot.module';
@@ -28,6 +31,10 @@ import UserModule from './user/user.module';
     NotificationModule,
     UserModule,
     BotModule,
+  ],
+  providers: [
+    { provide: APP_FILTER, useClass: TelegrafExceptionFilter },
+    { provide: APP_GUARD, useClass: AuthGuard },
   ],
 })
 class AppModule implements OnModuleInit {
