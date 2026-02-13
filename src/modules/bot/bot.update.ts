@@ -1,9 +1,10 @@
 import { EventEmitter2 } from '@nestjs/event-emitter';
 
-import { Command, Ctx, Hears, On, Start, Update } from 'nestjs-telegraf';
+import { Action, Command, Ctx, Hears, On, Start, Update } from 'nestjs-telegraf';
 import { Context } from 'telegraf';
 import type { WizardContext } from 'telegraf/scenes';
 
+import CALLBACK_BUTTONS from '@/common/constants/callback-buttons';
 import EVENTS from '@/common/constants/events';
 import REPLY_BUTTONS from '@/common/constants/reply-buttons';
 import CurrentUser from '@/common/decorators/current-user.decorator';
@@ -56,6 +57,11 @@ class BotUpdate {
 
     const text = this.messagesHelper.get('bot.start');
     await ctx.reply(text, keyboard);
+  }
+
+  @Action(CALLBACK_BUTTONS.EXIT.callback_data)
+  async handleExit(@Ctx() ctx: Context) {
+    await ctx.deleteMessage();
   }
 }
 

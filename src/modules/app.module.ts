@@ -17,6 +17,7 @@ import TelegrafExceptionFilter from '@/common/filters/telegraf-exception.filter'
 import AuthGuard from '@/common/guards/auth.guard';
 import type { EnvConfig } from '@/common/schemas/env.schema';
 
+import AdminModule from './admin/admin.module';
 import BotModule from './bot/bot.module';
 import NotificationModule from './notification/notification.module';
 import UserModule from './user/user.module';
@@ -31,6 +32,7 @@ import UserModule from './user/user.module';
     NotificationModule,
     UserModule,
     BotModule,
+    AdminModule,
   ],
   providers: [
     { provide: APP_FILTER, useClass: TelegrafExceptionFilter },
