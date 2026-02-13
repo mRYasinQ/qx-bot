@@ -21,7 +21,6 @@ class AuthGuard implements CanActivate {
     if (!user.isActive) return false;
 
     const userPermissions = user.permissions;
-    if (!userPermissions.length) return false;
 
     const contextHandler = context.getHandler();
     const contextClass = context.getClass();

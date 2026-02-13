@@ -21,16 +21,24 @@ class TelegrafExceptionFilter implements ExceptionFilter {
     if (exception instanceof HttpException) return;
 
     if (exception instanceof AppError) {
-      const { message, isOperational, quitScene } = exception;
+      const { message: msgKey, isOperational, quitScene } = exception;
 
       let keyboard: Markup.Markup<ReplyKeyboardMarkup> | undefined;
 
       if (quitScene && telegramCtx.scene) {
-        keyboard = mainKeyboard(telegramCtx.user);
+        keyboard = telegramCtx.callbackQuery ? undefined : mainKeyboard(telegramCtx.user);
         await telegramCtx.scene.leave();
       }
 
-      if (isOperational) await telegramCtx.reply(message, keyboard);
+      if (isOperational) {
+        const text = this.messagesHelper.get(msgKey);
+
+        if (telegramCtx.callbackQuery) {
+          await telegramCtx.answerCbQuery(text);
+        } else {
+          await telegramCtx.reply(text, keyboard);
+        }
+      }
 
       return;
     }
