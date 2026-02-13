@@ -7,7 +7,7 @@ interface PrepareFindAllOptionsResult<T> {
   findOptions: FindOptions<T>;
 }
 
-const prepareFindAllOptions = <T>(options: FindAllOptions<T>): PrepareFindAllOptionsResult<T> => {
+const prepareFindAllOptions = <T>(options: FindAllOptions<T> = {}): PrepareFindAllOptionsResult<T> => {
   const { where = {}, page = 1, limit = 5, disablePagination = false } = options;
 
   const safeLimit = Math.min(limit, 10);
@@ -25,18 +25,22 @@ const prepareFindAllOptions = <T>(options: FindAllOptions<T>): PrepareFindAllOpt
 const formatPaginatedResult = <T>(
   items: T[],
   total: number,
-  options: FindAllOptions<T>,
+  options: FindAllOptions<T> = {},
   findOptions: FindOptions<T>,
 ): PaginatedResult<T> => {
   const page = options.page ?? 1;
   const limit = findOptions.limit ?? total;
-  const totalPages = limit > 0 ? Math.ceil(total / limit) : 1;
+  const pages = limit > 0 ? Math.ceil(total / limit) : 1;
+  const nextPage = page < pages ? page + 1 : 1;
+  const prevPage = page > 1 ? page - 1 : pages;
 
   return {
     items,
     total,
     page: options.disablePagination ? 1 : page,
-    totalPages,
+    pages,
+    nextPage,
+    prevPage,
   };
 };
 

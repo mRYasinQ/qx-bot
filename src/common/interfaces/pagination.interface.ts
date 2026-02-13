@@ -11,7 +11,9 @@ interface PaginatedResult<T> {
   items: T[];
   total: number;
   page: number;
-  totalPages: number;
+  pages: number;
+  nextPage: number;
+  prevPage: number;
 }
 
 export type { FindAllOptions, PaginatedResult };

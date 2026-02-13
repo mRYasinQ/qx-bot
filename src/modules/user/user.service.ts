@@ -18,8 +18,8 @@ class UserService {
     private readonly userRepository: EntityRepository<UserEntity>,
   ) {}
 
-  async findAll(options: FindAllOptions<UserEntity>): Promise<PaginatedResult<UserEntity>> {
-    const { where, findOptions } = prepareFindAllOptions(options ?? {});
+  async findAll(options?: FindAllOptions<UserEntity>): Promise<PaginatedResult<UserEntity>> {
+    const { where, findOptions } = prepareFindAllOptions(options);
 
     const [items, total] = await this.userRepository.findAndCount(where, findOptions);
 
